@@ -21,7 +21,7 @@ body{margin:0}
 img{max-width:100%}
 [hidden]{display:none!important}
 html{scroll-behavior:smooth}
-@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*:not(.aurora > span){animation:none!important;transition:none!important}}
 body{background:var(--bg);color:var(--fg);font:16px/1.6 var(--font-body);-webkit-font-smoothing:antialiased}
 a{color:inherit}
 :focus-visible{outline:2px solid var(--emerald);outline-offset:3px;border-radius:4px}
@@ -240,7 +240,7 @@ footer a:hover{color:var(--fg)}
 .row-head > h1{animation-delay:.25s}.row-head > .tagline{animation-delay:.4s}
 .row-lede > *{animation-delay:.5s}.row-cta > *{animation-delay:.6s}.row-panel > *{animation-delay:.75s}
 @media (max-width:600px){.aurora span{filter:blur(48px)}.aurora .b1,.aurora .b3{width:90vw;height:80vw}.aurora .b2,.aurora .b4{width:80vw;height:70vw;top:60vw}.hero h1{max-width:none}}
-@media (prefers-reduced-motion:reduce){.aurora span,.row::before,.frame::before,.frame::after,.row > *{animation:none}}
+@media (prefers-reduced-motion:reduce){.row::before,.frame::before,.frame::after,.row > *{animation:none}}
 .row-head{gap:26px}
 
 /* fixes: grid children may shrink below their content (stops sideways scroll on phones) */
@@ -263,3 +263,7 @@ footer a:hover{color:var(--fg)}
 @media (hover:none),(pointer:coarse){.spot{display:none}}
 @media (prefers-reduced-motion:reduce){.row::after,.vp,.spot{display:none}}
 header.nav .btn{display:inline-block;line-height:1.2}
+
+/* Reduced-motion visitors still get the glow drifting, just slowly and softly.
+   Fast effects (line pulses, mouse light, scroll reveals) stay off for them. */
+@media (prefers-reduced-motion:reduce){.aurora span{animation-duration:26s!important}}
