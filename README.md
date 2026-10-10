@@ -8,7 +8,7 @@ Static marketing site for RadiQ Healthcare's teleradiology service. Plain HTML, 
 index.html              page markup
 assets/css/styles.css   all styles (colour and font tokens at the top)
 assets/js/main.js       tabs, form handling, scroll reveal, motion blur
-assets/img/             logo, hero background, favicon
+assets/img/             logo, navigation logo, favicon
 ```
 
 ## Run locally

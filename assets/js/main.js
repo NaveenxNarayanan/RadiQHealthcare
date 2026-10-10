@@ -86,20 +86,3 @@ const FORM_ENDPOINT='';
   // anything scrolled past (e.g. jumping to an anchor) is revealed too
   addEventListener('scroll',()=>{els.forEach(el=>{if(!el.classList.contains('in')&&el.getBoundingClientRect().bottom<0){el.classList.add('in');io.unobserve(el);}});},{passive:true});
 })();
-(function(){
-  if(matchMedia('(prefers-reduced-motion: reduce)').matches||matchMedia('(max-width:700px)').matches)return;
-  const g=document.getElementById('mb-scroll-g'),hero=document.querySelector('.hero');
-  let lastY=scrollY,lastT=performance.now(),blur=0,raf=0;
-  function tick(){
-    const now=performance.now(),y=scrollY,v=Math.abs(y-lastY)/Math.max(now-lastT,1);
-    lastY=y;lastT=now;
-    blur+= (Math.min(v*9,16)-blur)*0.25;      // ease toward speed-based target
-    if(blur<0.15)blur=0;
-    g.setAttribute('stdDeviation','0 '+blur.toFixed(2));
-    raf=(blur>0||v>0.01)?requestAnimationFrame(tick):0;
-  }
-  addEventListener('scroll',()=>{
-    if(hero.getBoundingClientRect().bottom<0)return;
-    if(!raf){lastT=performance.now();raf=requestAnimationFrame(tick);}
-  },{passive:true});
-})();
