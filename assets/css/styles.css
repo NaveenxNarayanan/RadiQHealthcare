@@ -200,14 +200,14 @@ footer a:hover{color:var(--fg)}
 .hero{position:relative;overflow:hidden;isolation:isolate;background:#000;padding-block:clamp(56px,9vw,110px) clamp(40px,6vw,80px)}
 .aurora{position:absolute;inset:0;z-index:-2;pointer-events:none}
 .aurora span{position:absolute;border-radius:50%;filter:blur(70px);opacity:.75;will-change:transform}
-.aurora .b1{width:52vw;height:46vw;left:-14vw;top:-14vw;background:radial-gradient(circle,#2a5bff 0%,rgba(42,91,255,.35) 45%,transparent 70%);animation:float1 22s ease-in-out infinite alternate}
-.aurora .b2{width:44vw;height:40vw;left:-10vw;top:22vw;background:radial-gradient(circle,#8fb3c9 0%,rgba(143,179,201,.3) 45%,transparent 70%);opacity:.55;animation:float2 26s ease-in-out infinite alternate}
-.aurora .b3{width:50vw;height:44vw;right:-16vw;top:-12vw;background:radial-gradient(circle,#1fbf86 0%,rgba(31,191,134,.32) 45%,transparent 70%);animation:float3 24s ease-in-out infinite alternate}
-.aurora .b4{width:40vw;height:36vw;right:-12vw;top:24vw;background:radial-gradient(circle,#3a64c8 0%,rgba(58,100,200,.3) 45%,transparent 70%);opacity:.6;animation:float1 30s ease-in-out infinite alternate-reverse}
-.aurora .b5{width:22vw;height:20vw;right:12vw;top:4vw;background:radial-gradient(circle,#f2a93b 0%,rgba(242,169,59,.25) 45%,transparent 70%);opacity:.35;animation:float2 20s ease-in-out infinite alternate}
-@keyframes float1{from{transform:translate3d(0,0,0) scale(1)}to{transform:translate3d(6vw,4vw,0) scale(1.15)}}
-@keyframes float2{from{transform:translate3d(0,0,0) scale(1.05)}to{transform:translate3d(5vw,-5vw,0) scale(.9)}}
-@keyframes float3{from{transform:translate3d(0,0,0) scale(1)}to{transform:translate3d(-7vw,5vw,0) scale(1.12)}}
+.aurora .b1{width:52vw;height:46vw;left:-14vw;top:-14vw;background:radial-gradient(circle,#2a5bff 0%,rgba(42,91,255,.35) 45%,transparent 70%);animation:float1 11s ease-in-out infinite alternate}
+.aurora .b2{width:44vw;height:40vw;left:-10vw;top:22vw;background:radial-gradient(circle,#8fb3c9 0%,rgba(143,179,201,.3) 45%,transparent 70%);opacity:.55;animation:float2 13s ease-in-out infinite alternate}
+.aurora .b3{width:50vw;height:44vw;right:-16vw;top:-12vw;background:radial-gradient(circle,#1fbf86 0%,rgba(31,191,134,.32) 45%,transparent 70%);animation:float3 12s ease-in-out infinite alternate}
+.aurora .b4{width:40vw;height:36vw;right:-12vw;top:24vw;background:radial-gradient(circle,#3a64c8 0%,rgba(58,100,200,.3) 45%,transparent 70%);opacity:.6;animation:float1 15s ease-in-out infinite alternate-reverse}
+.aurora .b5{width:22vw;height:20vw;right:12vw;top:4vw;background:radial-gradient(circle,#f2a93b 0%,rgba(242,169,59,.25) 45%,transparent 70%);opacity:.35;animation:float2 9s ease-in-out infinite alternate}
+@keyframes float1{0%{transform:translate3d(0,0,0) scale(1)}50%{transform:translate3d(14vw,6vw,0) scale(1.25)}100%{transform:translate3d(4vw,12vw,0) scale(.95)}}
+@keyframes float2{0%{transform:translate3d(0,0,0) scale(1.05)}50%{transform:translate3d(10vw,-9vw,0) scale(.85)}100%{transform:translate3d(-4vw,-3vw,0) scale(1.2)}}
+@keyframes float3{0%{transform:translate3d(0,0,0) scale(1)}50%{transform:translate3d(-15vw,8vw,0) scale(1.2)}100%{transform:translate3d(-5vw,14vw,0) scale(.9)}}
 /* keep the centre black so the headline sits on darkness, as in the reference */
 .hero::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(ellipse 42% 60% at 50% 46%,#000 35%,rgba(0,0,0,.6) 60%,transparent 85%),linear-gradient(180deg,transparent 75%,var(--bg) 100%)}
 
@@ -248,3 +248,18 @@ footer a:hover{color:var(--fg)}
 /* shorter menu-bar button on small phones */
 @media (max-width:480px){header.nav .btn .long{display:none}header.nav .btn{white-space:nowrap}}
 @media (max-width:380px){header.nav .wrap{gap:12px}header.nav .btn{padding:9px 12px;font-size:.8rem}.brand img{height:38px}}
+
+/* ===== Extra motion ===== */
+/* light pulses travelling along the grid lines */
+.row::after{content:"";position:absolute;top:0;left:-50vw;width:220px;height:1px;background:linear-gradient(90deg,transparent,var(--emerald),#e8fff6,var(--emerald),transparent);box-shadow:0 0 8px var(--emerald);animation:pulse-x 6.5s cubic-bezier(.45,0,.55,1) infinite;opacity:0}
+.row-lede::after{animation-delay:1.6s}.row-cta::after{animation-delay:3.2s;animation-direction:reverse}.row-panel::after{animation-delay:4.4s}.row-end::after{animation-delay:2.4s;animation-direction:reverse}
+@keyframes pulse-x{0%{left:-50vw;opacity:0}8%{opacity:1}92%{opacity:1}100%{left:calc(100% + 50vw - 220px);opacity:0}}
+.vp{position:absolute;top:-90px;width:1px;height:160px;background:linear-gradient(180deg,transparent,#7aa2ff,#eef3ff,#7aa2ff,transparent);box-shadow:0 0 8px #3d7bff;animation:pulse-y 7.5s cubic-bezier(.45,0,.55,1) infinite;opacity:0}
+.vp.l{left:0}.vp.r{right:0;animation-delay:3.7s}
+@keyframes pulse-y{0%{top:-90px;opacity:0}8%{opacity:1}92%{opacity:1}100%{top:calc(100% + 60px - 160px);opacity:0}}
+/* soft light that follows the mouse (desktop only) */
+.spot{position:absolute;left:0;top:0;width:620px;height:620px;margin:-310px 0 0 -310px;border-radius:50%;z-index:-1;pointer-events:none;background:radial-gradient(circle,color-mix(in srgb,var(--emerald) 22%,transparent),color-mix(in srgb,var(--blue) 12%,transparent) 40%,transparent 68%);transform:translate3d(var(--sx,50vw),var(--sy,40%),0);opacity:0;transition:opacity .6s}
+.hero:hover .spot{opacity:1}
+@media (hover:none),(pointer:coarse){.spot{display:none}}
+@media (prefers-reduced-motion:reduce){.row::after,.vp,.spot{display:none}}
+header.nav .btn{display:inline-block;line-height:1.2}

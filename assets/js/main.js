@@ -86,3 +86,13 @@ const FORM_ENDPOINT='';
   // anything scrolled past (e.g. jumping to an anchor) is revealed too
   addEventListener('scroll',()=>{els.forEach(el=>{if(!el.classList.contains('in')&&el.getBoundingClientRect().bottom<0){el.classList.add('in');io.unobserve(el);}});},{passive:true});
 })();
+
+// light that follows the mouse across the hero (desktop, motion allowed)
+(function(){
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches||!matchMedia('(hover:hover) and (pointer:fine)').matches)return;
+  const hero=document.querySelector('.hero'),spot=hero&&hero.querySelector('.spot');if(!spot)return;
+  let tx=0,ty=0,x=0,y=0,raf=0;
+  function step(){x+=(tx-x)*.12;y+=(ty-y)*.12;spot.style.setProperty('--sx',x+'px');spot.style.setProperty('--sy',y+'px');
+    raf=(Math.abs(tx-x)>.5||Math.abs(ty-y)>.5)?requestAnimationFrame(step):0;}
+  hero.addEventListener('pointermove',e=>{const r=hero.getBoundingClientRect();tx=e.clientX-r.left;ty=e.clientY-r.top;if(!x&&!y){x=tx;y=ty;}if(!raf)raf=requestAnimationFrame(step);},{passive:true});
+})();
