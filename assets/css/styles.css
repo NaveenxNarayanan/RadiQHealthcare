@@ -106,8 +106,8 @@ section.block{padding-block:clamp(64px,9vw,112px)}
 @media (max-width:760px){.steps{grid-template-columns:1fr}}
 
 /* quality + tat */
-.split{display:grid;grid-template-columns:1fr 1.1fr;gap:clamp(32px,5vw,72px);align-items:start}
-@media (max-width:900px){.split{grid-template-columns:1fr}}
+.split{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:clamp(32px,5vw,72px);align-items:start}
+@media (max-width:900px){.split{grid-template-columns:minmax(0,1fr)}}
 .checks{list-style:none;padding:0;margin:0;display:grid;gap:18px}
 .checks li{display:grid;grid-template-columns:22px 1fr;gap:14px}
 .checks li svg{margin-top:3px}
@@ -242,3 +242,9 @@ footer a:hover{color:var(--fg)}
 @media (max-width:600px){.aurora span{filter:blur(48px)}.aurora .b1,.aurora .b3{width:90vw;height:80vw}.aurora .b2,.aurora .b4{width:80vw;height:70vw;top:60vw}.hero h1{max-width:none}}
 @media (prefers-reduced-motion:reduce){.aurora span,.row::before,.frame::before,.frame::after,.row > *{animation:none}}
 .row-head{gap:26px}
+
+/* fixes: grid children may shrink below their content (stops sideways scroll on phones) */
+.split > *,.form-grid > *,.hero .frame > *{min-width:0}
+/* shorter menu-bar button on small phones */
+@media (max-width:480px){header.nav .btn .long{display:none}header.nav .btn{white-space:nowrap}}
+@media (max-width:380px){header.nav .wrap{gap:12px}header.nav .btn{padding:9px 12px;font-size:.8rem}.brand img{height:38px}}
